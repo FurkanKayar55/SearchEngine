@@ -14,7 +14,7 @@ export default class Search extends React.Component {
     axios.get(`https://localhost:44349/api/Search/Index?Query=${query}&Url=${url}`)
       .then(res => {
         this.setState({ 
-          pages: res.data.pages,
+          pages: res.data.pages.reduce((prev, curr) => [prev, ', ', curr]),
           query: query, 
           isReady: true
         });
